@@ -106,6 +106,7 @@ export async function withSendFile(
   }
   if (opts.cacheControl === true) {
     let _cache = `public, max-age=${opts.maxAge}`;
+    if (opts.staleWhileRevalidate > 0) _cache += `, stale-while-revalidate=${opts.staleWhileRevalidate}`
     if (opts.immutable === true) _cache += ", immutable";
     headers.set("Cache-Control", _cache);
   }
